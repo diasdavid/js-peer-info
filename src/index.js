@@ -20,10 +20,10 @@ function Peer (peerId) {
   }
 
   if (!peerId) {
-    this.id = Id.create()
-  } else {
-    this.id = peerId
+    throw new Error('Missing peerId. Use Peer.create(cb) to create one')
   }
+
+  this.id = peerId
 
   this.multiaddrs = []
   const observedMultiaddrs = []
@@ -90,4 +90,14 @@ function Peer (peerId) {
 
   // TODO: add features to fetch multiaddr using filters
   // look at https://github.com/whyrusleeping/js-mafmt/blob/master/src/index.js
+}
+
+Peer.create = (cb) => {
+  Id.create((err, key) => {
+    if (err) {
+      return cb(err)
+    }
+
+    cb(null, new Peer(key))
+  })
 }

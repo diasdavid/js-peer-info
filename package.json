@@ -7,12 +7,12 @@
   "scripts": {
     "lint": "aegir-lint",
     "build": "aegir-build",
-    "test": "aegir-test",
-    "test:node": "aegir-test node",
-    "test:browser": "aegir-test browser",
-    "release": "aegir-release",
-    "release-minor": "aegir-release --type minor",
-    "release-major": "aegir-release --type major",
+    "test": "PHANTOM=off aegir-test",
+    "test:node": "aegir-test --env node",
+    "test:browser": "PHANTOM=off aegir-test --env browser",
+    "release": "PHANTOM=off aegir-release",
+    "release-minor": "PHANTOM=off aegir-release --type minor",
+    "release-major": "PHANTOM=off aegir-release --type major",
     "coverage": "aegir-coverage",
     "coverage-publish": "aegir-coverage publish"
   },
@@ -37,7 +37,7 @@
     "test"
   ],
   "devDependencies": {
-    "aegir": "^8.0.0",
+    "aegir": "^8.1.1",
     "buffer-loader": "0.0.1",
     "chai": "^3.5.0",
     "pre-commit": "^1.1.3"

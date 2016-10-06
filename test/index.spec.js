@@ -47,6 +47,18 @@ describe('peer-info', () => {
     })
   })
 
+  it('PeerInfo.create with existing id', (done) => {
+    PeerId.create((err, id) => {
+      expect(err).to.not.exist
+      PeerInfo.create(id, (err, pi) => {
+        expect(err).to.not.exist
+        expect(pi.id).to.exist
+        expect(pi.id).to.deep.equal(id)
+        done()
+      })
+    })
+  })
+
   it('add multiaddr', () => {
     const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
     pi.multiaddr.add(mh)

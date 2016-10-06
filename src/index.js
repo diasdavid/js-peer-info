@@ -3,7 +3,7 @@
 const Id = require('peer-id')
 const multiaddr = require('multiaddr')
 
-exports = module.exports = Peer
+exports = module.exports = PeerInfo
 
 function ensureMultiaddr (addr) {
   if (multiaddr.isMultiaddr(addr)) {
@@ -14,9 +14,9 @@ function ensureMultiaddr (addr) {
 }
 
 // Peer represents a peer on the IPFS network
-function Peer (peerId) {
-  if (!(this instanceof Peer)) {
-    return new Peer(peerId)
+function PeerInfo (peerId) {
+  if (!(this instanceof PeerInfo)) {
+    return new PeerInfo(peerId)
   }
 
   if (!peerId) {
@@ -92,12 +92,20 @@ function Peer (peerId) {
   // look at https://github.com/whyrusleeping/js-mafmt/blob/master/src/index.js
 }
 
-Peer.create = (cb) => {
-  Id.create((err, key) => {
-    if (err) {
-      return cb(err)
-    }
+PeerInfo.create = (id, callback) => {
+  if (typeof id === 'function') {
+    callback = id
+    id = null
 
-    cb(null, new Peer(key))
-  })
+    Id.create((err, id) => {
+      if (err) {
+        return callback(err)
+      }
+
+      callback(null, new PeerInfo(id))
+    })
+    return
+  }
+
+  callback(null, new PeerInfo(id))
 }

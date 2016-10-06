@@ -2,9 +2,9 @@
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
-[![Build Status](https://travis-ci.org/multiformats/js-peer-info.svg?style=flat-square)](https://travis-ci.org/multiformats/js-peer-info)
-[![Coverage Status](https://coveralls.io/repos/github/multiformats/js-peer-info/badge.svg?branch=master)](https://coveralls.io/github/multiformats/js-peer-info?branch=master)
-[![Dependency Status](https://david-dm.org/multiformats/js-peer-info.svg?style=flat-square)](https://david-dm.org/multiformats/js-peer-info)
+[![Build Status](https://travis-ci.org/libp2p/js-peer-info.svg?style=flat-square)](https://travis-ci.org/libp2p/js-peer-info)
+[![Coverage Status](https://coveralls.io/repos/github/libp2p/js-peer-info/badge.svg?branch=master)](https://coveralls.io/github/libp2p/js-peer-info?branch=master)
+[![Dependency Status](https://david-dm.org/libp2p/js-peer-info.svg?style=flat-square)](https://david-dm.org/libp2p/js-peer-info)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
@@ -13,6 +13,8 @@
 > [multiaddrs](https://github.com/libp2p/js-multiaddr). This module is used by
 > [IPFS](https://github.com/ipfs/ipfs) and
 > [libp2p](https://github.com/libp2p/js-libp2p).
+
+## Table of Contents
 
 - [Installation](#installation)
   - [npm](#npm)

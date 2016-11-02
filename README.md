@@ -10,8 +10,7 @@
 ![](https://img.shields.io/badge/npm-%3E%3D3.0.0-orange.svg?style=flat-square)
 ![](https://img.shields.io/badge/Node.js-%3E%3D4.0.0-orange.svg?style=flat-square)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-peer-info.svg)](https://saucelabs.com/u/js-peer
--info)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/ipfs-js-peer-info.svg)](https://saucelabs.com/u/ipfs-js-peer-info)
 
 > A PeerInfo object contains information about a
 > [PeerID](https://github.com/libp2p/js-peer-id) and its

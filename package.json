@@ -45,7 +45,7 @@
   "dependencies": {
     "babel-runtime": "^6.11.6",
     "multiaddr": "^2.0.3",
-    "peer-id": "^0.7.0"
+    "peer-id": "^0.8.0"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",

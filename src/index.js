@@ -2,6 +2,7 @@
 
 const Id = require('peer-id')
 const multiaddr = require('multiaddr')
+const _ = require('lodash')
 
 exports = module.exports = PeerInfo
 
@@ -86,6 +87,13 @@ function PeerInfo (peerId) {
     fresh.forEach((m) => {
       this.multiaddr.add(m)
     })
+  }
+
+  this.distinctMultiaddr = () => {
+    var result = _.uniqBy(this.multiaddrs, function (item) {
+      return item.toOptions().port
+    })
+    return result
   }
 
   // TODO: add features to fetch multiaddr using filters

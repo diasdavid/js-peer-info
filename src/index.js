@@ -91,7 +91,7 @@ function PeerInfo (peerId) {
 
   this.distinctMultiaddr = () => {
     var result = _.uniqBy(this.multiaddrs, function (item) {
-      return item.toOptions().port
+      return [item.toOptions().port, item.toOptions().transport].join()
     })
     return result
   }

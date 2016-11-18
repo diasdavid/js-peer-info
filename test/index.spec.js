@@ -151,4 +151,81 @@ describe('peer-info', () => {
 
     expect(pi.multiaddrs.length).to.equal(4)
   })
+
+  it('get distinct multiaddr same transport multiple different ports', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+    const mh3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
+    const mh4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+    pi.multiaddr.add(mh3)
+    pi.multiaddr.add(mh4)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(4)
+  })
+
+  it('get distinct multiaddr same transport different port', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(2)
+  })
+
+  it('get distinct multiaddr same transport same port', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(1)
+  })
+
+  it('get distinct multiaddr different transport same port', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip4/127.0.0.1/udp/5001')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(2)
+  })
+
+  it('get distinct multiaddr different family same port same transport', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip6/::/tcp/5001')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(1)
+  })
+
+  it('get distinct multiaddr different family same port multiple transports', () => {
+    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const mh2 = Multiaddr('/ip6/::/tcp/5001')
+    const mh3 = Multiaddr('/ip6/::/udp/5002')
+    const mh4 = Multiaddr('/ip4/127.0.0.1/udp/5002')
+
+    pi.multiaddr.add(mh1)
+    pi.multiaddr.add(mh2)
+    pi.multiaddr.add(mh3)
+    pi.multiaddr.add(mh4)
+
+    var distinctMultiaddr = pi.distinctMultiaddr()
+    expect(distinctMultiaddr.length).to.equal(2)
+
+    expect(distinctMultiaddr[0].toOptions().family).to.equal('ipv4')
+    expect(distinctMultiaddr[1].toOptions().family).to.equal('ipv6')
+  })
 })

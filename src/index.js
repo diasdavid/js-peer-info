@@ -2,7 +2,7 @@
 
 const Id = require('peer-id')
 const multiaddr = require('multiaddr')
-const _ = require('lodash')
+const uniqBy = require('lodash').uniqBy
 
 exports = module.exports = PeerInfo
 
@@ -90,7 +90,7 @@ function PeerInfo (peerId) {
   }
 
   this.distinctMultiaddr = () => {
-    var result = _.uniqBy(this.multiaddrs, function (item) {
+    var result = uniqBy(this.multiaddrs, function (item) {
       return [item.toOptions().port, item.toOptions().transport].join()
     })
     return result

@@ -39,7 +39,7 @@
     "aegir": "^9.2.1",
     "buffer-loader": "0.0.1",
     "chai": "^3.5.0",
-    "pre-commit": "^1.2.1"
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "multiaddr": "^2.0.3",

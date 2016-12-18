@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "multiaddr": "^2.0.3",
-    "peer-id": "^0.8.0"
+    "peer-id": "^0.8.1"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",

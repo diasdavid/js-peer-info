@@ -42,6 +42,12 @@ describe('peer-info', () => {
     ).to.throw()
   })
 
+  it('isPeerInfo', () => {
+    expect(PeerInfo.isPeerInfo(pi)).to.equal(true)
+    expect(PeerInfo.isPeerInfo(pi.id)).to.equal(false)
+    expect(PeerInfo.isPeerInfo('bananas')).to.equal(false)
+  })
+
   it('PeerInfo.create', (done) => {
     PeerInfo.create((err, pi) => {
       expect(err).to.not.exist()

@@ -117,3 +117,9 @@ PeerInfo.create = (id, callback) => {
 
   callback(null, new PeerInfo(id))
 }
+
+PeerInfo.isPeerInfo = (peerInfo) => {
+  if (peerInfo.constructor && peerInfo.constructor.name) {
+    return peerInfo.constructor.name === 'PeerInfo'
+  }
+}

@@ -236,13 +236,37 @@ describe('peer-info', () => {
     expect(multiaddrDistinct[1].toOptions().family).to.equal('ipv6')
   })
 
-  it('.connect', () => {
-    pi.connect('/ip4/127.0.0.1')
-    expect(pi.isConnected()).to.equal(true)
+  it('multiaddrs.has', () => {
+    pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
+    expect(pi.multiaddrs.has('/ip4/127.0.0.1/tcp/5001')).to.equal(true)
+    expect(pi.multiaddrs.has('/ip4/127.0.0.1/tcp/5001/ws')).to.equal(false)
   })
 
-  it('.disconnect', () => {
-    pi.disconnect('/ip4/127.0.0.1')
+  it('multiaddrs.forEach', () => {
+    pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.forEach((ma) => {
+      expect(pi.multiaddrs.has(ma)).to.equal(true)
+    })
+  })
+
+  it('multiaddrs.toArray', () => {
+    pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.toArray().forEach((ma) => {
+      expect(pi.multiaddrs.has(ma)).to.equal(true)
+    })
+  })
+
+  it('.connect .disconnect', () => {
+    pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
+    pi.connect('/ip4/127.0.0.1/tcp/5001')
+    expect(pi.isConnected()).to.equal(true)
+    pi.disconnect()
     expect(pi.isConnected()).to.equal(false)
+    expect(() => pi.connect('/ip4/127.0.0.1/tcp/5001/ws')).to.throw()
+  })
+
+  it('multiaddrs.clear', () => {
+    pi.multiaddrs.clear()
+    expect(pi.multiaddrs.size).to.equal(0)
   })
 })

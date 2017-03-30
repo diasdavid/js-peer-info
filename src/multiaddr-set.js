@@ -53,6 +53,7 @@ class MultiaddrSet {
   }
 
   has (ma) {
+    ma = ensureMultiaddr(ma)
     return this._multiaddrs.some((m) => m.equals(ma))
   }
 

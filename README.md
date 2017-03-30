@@ -35,7 +35,7 @@
   - [`.multiaddrs.add(addr)`](#multiaddraddaddr)
   - [`.multiaddrs.addSafe(addr)`](#multiaddraddsafeaddr)
   - [`.multiaddrs.forEach(fn)`](#multiaddrforeachfn)
-  - [`.multaiddrs.size()`]((#multiaddrsize)
+  - [`.multaiddrs.size`]((#multiaddrsize)
   - [`.multiaddrs.has()`]((#multiaddrhas)
   - [`.multiaddrs.delete(addr)`](#multiaddrdeleteaddr)
   - [`.multiaddrs.toArray()`](#multiaddrtoarray)

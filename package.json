@@ -43,7 +43,7 @@
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^2.2.3",
+    "multiaddr": "^2.3.0",
     "lodash.uniqby": "^4.7.0",
     "peer-id": "^0.8.5"
   },

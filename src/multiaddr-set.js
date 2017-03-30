@@ -1,6 +1,7 @@
 'use strict'
 
 const ensureMultiaddr = require('./utils').ensureMultiaddr
+const uniqBy = require('lodash.uniqby')
 
 // Because JavaScript doesn't let you overload the compare in Set()..
 class MultiaddrSet {
@@ -13,20 +14,25 @@ class MultiaddrSet {
     ma = ensureMultiaddr(ma)
 
     if (!this.has(ma)) {
-      this.multiaddrs.push(ma)
+      this._multiaddrs.push(ma)
     }
   }
 
-  // to prevent multiaddr explosion due to identify
+  // addSafe - prevent multiaddr explosion™
+  // Multiaddr explosion is when you dial to a bunch of nodes and every node
+  // gives you a different observed address and you start storing them all to
+  // share with other peers. This seems like a good idea until you realize that
+  // most of those addresses are unique to the subnet that peer is in and so,
+  // they are completely worthless for all the other peers. This method is
+  // exclusively used by identify.
   addSafe (ma) {
     ma = ensureMultiaddr(ma)
 
-    let check = false
-    this._observedMultiaddrs.some((m, i) => {
+    const check = this._observedMultiaddrs.some((m, i) => {
       if (m.equals(ma)) {
-        this.multiaddr.add(ma)
+        this.add(ma)
         this._observedMultiaddrs.splice(i, 1)
-        check = true
+        return true
       }
     })
     if (!check) {
@@ -39,7 +45,7 @@ class MultiaddrSet {
   }
 
   get size () {
-    return this.multiaddrs.length
+    return this._multiaddrs.length
   }
 
   forEach (fn) {
@@ -55,7 +61,7 @@ class MultiaddrSet {
 
     this._multiaddrs.some((m, i) => {
       if (m.equals(ma)) {
-        this.multiaddrs.splice(i, 1)
+        this._multiaddrs.splice(i, 1)
         return true
       }
     })
@@ -69,12 +75,22 @@ class MultiaddrSet {
     if (!Array.isArray(fresh)) {
       fresh = [fresh]
     }
-    existing.forEach((m) => this.multiaddr.rm(m))
-    fresh.forEach((m) => this.multiaddr.add(m))
+    existing.forEach((m) => this.delete(m))
+    fresh.forEach((m) => this.add(m))
   }
 
   clear () {
     this._multiaddrs = []
+  }
+
+  // this only really helps make ip6 and ip4 multiaddrs distinct if they are
+  // different
+  // TODO this is not an ideal solution, probably this code should just be
+  // in libp2p-tcp
+  distinct () {
+    return uniqBy(this._multiaddrs, (ma) => {
+      return [ma.toOptions().port, ma.toOptions().transport].join()
+    })
   }
 }
 

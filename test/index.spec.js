@@ -37,9 +37,7 @@ describe('peer-info', () => {
   })
 
   it('throws when not passing an Id', () => {
-    expect(
-      () => new PeerInfo()
-    ).to.throw()
+    expect(() => new PeerInfo()).to.throw()
   })
 
   it('isPeerInfo', () => {
@@ -56,185 +54,195 @@ describe('peer-info', () => {
     })
   })
 
-  it('PeerInfo.create with exist()ing id', (done) => {
+  it('PeerInfo.create with existing id', (done) => {
     PeerId.create((err, id) => {
       expect(err).to.not.exist()
       PeerInfo.create(id, (err, pi) => {
         expect(err).to.not.exist()
         expect(pi.id).to.exist()
-        expect(pi.id).to.deep.equal(id)
+        expect(pi.id.isEqual(id)).to.equal(true)
         done()
       })
     })
   })
 
   it('add multiaddr', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    pi.multiaddr.add(mh)
-    expect(pi.multiaddrs.length).to.equal(1)
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.add(ma)
+    expect(pi.multiaddrs.size).to.equal(1)
   })
 
   it('add multiaddr that are buffers', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    pi.multiaddr.add(mh.buffer)
-    expect(pi.multiaddrs[0] instanceof Multiaddr).to.equal(true)
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.add(ma.buffer)
+    expect(pi.multiaddrs.has(ma)).to.equal(true)
   })
 
   it('add repeated multiaddr', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    pi.multiaddr.add(mh)
-    expect(pi.multiaddrs.length).to.equal(1)
-    pi.multiaddr.add(mh)
-    expect(pi.multiaddrs.length).to.equal(1)
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.add(ma)
+    expect(pi.multiaddrs.size).to.equal(1)
+    pi.multiaddrs.add(ma)
+    expect(pi.multiaddrs.size).to.equal(1)
   })
 
-  it('rm multiaddr', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    pi.multiaddr.add(mh)
-    expect(pi.multiaddrs.length).to.equal(1)
-    pi.multiaddr.rm(mh)
-    expect(pi.multiaddrs.length).to.equal(0)
+  it('delete multiaddr', () => {
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.add(ma)
+    expect(pi.multiaddrs.size).to.equal(1)
+    pi.multiaddrs.delete(ma)
+    expect(pi.multiaddrs.size).to.equal(0)
   })
 
   it('addSafe - avoid multiaddr explosion', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/9002')
-    const mh3 = Multiaddr('/ip4/127.0.0.1/tcp/9009')
-    pi.multiaddr.addSafe(mh)
-    expect(pi.multiaddrs.length).to.equal(0)
-    pi.multiaddr.addSafe(mh)
-    expect(pi.multiaddrs.length).to.equal(1)
-    pi.multiaddr.addSafe(mh2)
-    pi.multiaddr.addSafe(mh3)
-    expect(pi.multiaddrs.length).to.equal(1)
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/9002')
+    const ma3 = Multiaddr('/ip4/127.0.0.1/tcp/9009')
+    pi.multiaddrs.addSafe(ma)
+    expect(pi.multiaddrs.size).to.equal(0)
+    pi.multiaddrs.addSafe(ma)
+    expect(pi.multiaddrs.size).to.equal(1)
+    pi.multiaddrs.addSafe(ma2)
+    pi.multiaddrs.addSafe(ma3)
+    expect(pi.multiaddrs.size).to.equal(1)
   })
 
   it('addSafe - multiaddr that are buffers', () => {
-    const mh = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    pi.multiaddr.addSafe(mh.buffer)
-    pi.multiaddr.addSafe(mh.buffer)
-    expect(pi.multiaddrs[0] instanceof Multiaddr).to.equal(true)
+    const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.addSafe(ma.buffer)
+    pi.multiaddrs.addSafe(ma.buffer)
+    expect(pi.multiaddrs.has(ma)).to.equal(true)
   })
 
   it('replace multiaddr', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
-    const mh3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
-    const mh4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
-    const mh5 = Multiaddr('/ip4/127.0.0.1/tcp/5005')
-    const mh6 = Multiaddr('/ip4/127.0.0.1/tcp/5006')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+    const ma3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
+    const ma4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
+    const ma5 = Multiaddr('/ip4/127.0.0.1/tcp/5005')
+    const ma6 = Multiaddr('/ip4/127.0.0.1/tcp/5006')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
-    pi.multiaddr.add(mh3)
-    pi.multiaddr.add(mh4)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+    pi.multiaddrs.add(ma3)
+    pi.multiaddrs.add(ma4)
 
-    expect(pi.multiaddrs.length).to.equal(4)
+    expect(pi.multiaddrs.size).to.equal(4)
 
-    const old = [mh2, mh4]
-    const fresh = [mh5, mh6]
+    const old = [ma2, ma4]
+    const fresh = [ma5, ma6]
 
-    pi.multiaddr.replace(old, fresh)
+    pi.multiaddrs.replace(old, fresh)
 
-    expect(pi.multiaddrs.length).to.equal(4)
+    expect(pi.multiaddrs.size).to.equal(4)
   })
 
   it('replace multiaddr (no arrays)', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
-    const mh3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
-    const mh4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
-    const mh5 = Multiaddr('/ip4/127.0.0.1/tcp/5005')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+    const ma3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
+    const ma4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
+    const ma5 = Multiaddr('/ip4/127.0.0.1/tcp/5005')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
-    pi.multiaddr.add(mh3)
-    pi.multiaddr.add(mh4)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+    pi.multiaddrs.add(ma3)
+    pi.multiaddrs.add(ma4)
 
-    expect(pi.multiaddrs.length).to.equal(4)
+    expect(pi.multiaddrs.size).to.equal(4)
 
-    const old = mh2
-    const fresh = mh5
+    const old = ma2
+    const fresh = ma5
 
-    pi.multiaddr.replace(old, fresh)
+    pi.multiaddrs.replace(old, fresh)
 
-    expect(pi.multiaddrs.length).to.equal(4)
+    expect(pi.multiaddrs.size).to.equal(4)
   })
 
   it('get distinct multiaddr same transport multiple different ports', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
-    const mh3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
-    const mh4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+    const ma3 = Multiaddr('/ip4/127.0.0.1/tcp/5003')
+    const ma4 = Multiaddr('/ip4/127.0.0.1/tcp/5004')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
-    pi.multiaddr.add(mh3)
-    pi.multiaddr.add(mh4)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+    pi.multiaddrs.add(ma3)
+    pi.multiaddrs.add(ma4)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
+    var distinctMultiaddr = pi.multiaddrs.distinct()
     expect(distinctMultiaddr.length).to.equal(4)
   })
 
   it('get distinct multiaddr same transport different port', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5002')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
-    expect(distinctMultiaddr.length).to.equal(2)
+    var multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(2)
   })
 
   it('get distinct multiaddr same transport same port', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
-    expect(distinctMultiaddr.length).to.equal(1)
+    var multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(1)
   })
 
   it('get distinct multiaddr different transport same port', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip4/127.0.0.1/udp/5001')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/udp/5001')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
-    expect(distinctMultiaddr.length).to.equal(2)
+    var multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(2)
   })
 
   it('get distinct multiaddr different family same port same transport', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip6/::/tcp/5001')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip6/::/tcp/5001')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
-    expect(distinctMultiaddr.length).to.equal(1)
+    const multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(1)
   })
 
   it('get distinct multiaddr different family same port multiple transports', () => {
-    const mh1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
-    const mh2 = Multiaddr('/ip6/::/tcp/5001')
-    const mh3 = Multiaddr('/ip6/::/udp/5002')
-    const mh4 = Multiaddr('/ip4/127.0.0.1/udp/5002')
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    const ma2 = Multiaddr('/ip6/::/tcp/5001')
+    const ma3 = Multiaddr('/ip6/::/udp/5002')
+    const ma4 = Multiaddr('/ip4/127.0.0.1/udp/5002')
 
-    pi.multiaddr.add(mh1)
-    pi.multiaddr.add(mh2)
-    pi.multiaddr.add(mh3)
-    pi.multiaddr.add(mh4)
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+    pi.multiaddrs.add(ma3)
+    pi.multiaddrs.add(ma4)
 
-    var distinctMultiaddr = pi.distinctMultiaddr()
-    expect(distinctMultiaddr.length).to.equal(2)
+    const multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(2)
 
-    expect(distinctMultiaddr[0].toOptions().family).to.equal('ipv4')
-    expect(distinctMultiaddr[1].toOptions().family).to.equal('ipv6')
+    expect(multiaddrDistinct[0].toOptions().family).to.equal('ipv4')
+    expect(multiaddrDistinct[1].toOptions().family).to.equal('ipv6')
+  })
+
+  it('.connect', () => {
+    pi.connect('/ip4/127.0.0.1')
+    expect(pi.isConnected()).to.equal(true)
+  })
+
+  it('.disconnect', () => {
+    pi.disconnect('/ip4/127.0.0.1')
+    expect(pi.isConnected()).to.equal(false)
   })
 })

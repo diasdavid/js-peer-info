@@ -12,7 +12,7 @@ class MultiaddrSet {
   add (ma) {
     ma = ensureMultiaddr(ma)
 
-    if (!this.multiaddrHas(ma)) {
+    if (!this.has(ma)) {
       this.multiaddrs.push(ma)
     }
   }
@@ -35,10 +35,10 @@ class MultiaddrSet {
   }
 
   toArray () {
-    return this._multiaddrs
+    return this._multiaddrs.slice()
   }
 
-  get length () {
+  get size () {
     return this.multiaddrs.length
   }
 

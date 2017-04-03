@@ -45,7 +45,7 @@
   "dependencies": {
     "multiaddr": "^2.3.0",
     "lodash.uniqby": "^4.7.0",
-    "peer-id": "^0.8.6"
+    "peer-id": "^0.8.7"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",

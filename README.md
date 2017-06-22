@@ -77,13 +77,13 @@ const multiaddr = require('multiaddr')
 const peer = new PeerInfo()
 
 // TCP port 5001
-peer.multiaddr.add(multiaddr('/ip4/1.2.3.4/tcp/5001'))
+peer.multiaddrs.add(multiaddr('/ip4/1.2.3.4/tcp/5001'))
 
 // UDP port 8001
-peer.multiaddr.add(multiaddr('/ip4/1.2.3.4/udp/8001'))
+peer.multiaddrs.add(multiaddr('/ip4/1.2.3.4/udp/8001'))
 
 // mic/speaker soundwaves using frequencies 697 and 1209
-peer.multiaddr.add(multiaddr('/sonic/bfsk/697/1209'))
+peer.multiaddrs.add(multiaddr('/sonic/bfsk/697/1209'))
 ```
 
 ## API
@@ -118,7 +118,7 @@ A list of multiaddresses instances that `peer` can be reached at.
 Adds a new multiaddress that `peer` can be reached at. `addr` is an instance of
 a [multiaddr](https://github.com/libp2p/js-multiaddr).
 
-### `.multiaddr.addSafe(addr)`
+### `.multiaddrs.addSafe(addr)`
 
 - `addr: Multiaddr`
 
@@ -131,13 +131,13 @@ peers which will not provide a useful multiaddr to be shared to the rest of the
 network (e.g. a multiaddr referring to a peer inside a LAN being shared to the
 outside world).
 
-### `.multiaddr.delete(addr)`
+### `.multiaddrs.delete(addr)`
 
 - `addr: Multiaddr`
 
 Removes a multiaddress instance `addr` from `peer`.
 
-### `.multiaddr.replace(existing, fresh)`
+### `.multiaddrs.replace(existing, fresh)`
 
 - `existing: Multiaddr`
 - `fresh: Multiaddr`

@@ -95,7 +95,7 @@ const PeerInfo = require('peer-info')
 ### `PeerInfo.create([id, ] callback)`
 
 - `id: PeerID`, optional
-- `callback: Function`
+- `callback: Function` with signature `function (err, peerInfo) {}`
 
 Creates a new PeerInfo instance and if no `id` is passed it
 generates a new underlying [PeerID](https://github.com/libp2p/js-peer-id)

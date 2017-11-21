@@ -13,17 +13,17 @@ describe('peer-info', () => {
   let pi
 
   beforeEach((done) => {
-    PeerInfo.create((err, _pi) => {
+    PeerId.create({bits: 512}, (err, id) => {
       if (err) {
         return done(err)
       }
-      pi = _pi
+      pi = new PeerInfo(id)
       done()
     })
   })
 
   it('create with Id', (done) => {
-    PeerId.create((err, id) => {
+    PeerId.create({bits: 512}, (err, id) => {
       expect(err).to.not.exist()
       const pi = new PeerInfo(id)
       const pi2 = new PeerInfo(id)
@@ -47,7 +47,7 @@ describe('peer-info', () => {
   })
 
   it('PeerInfo.create', (done) => {
-    PeerInfo.create((err, pi) => {
+    PeerInfo.create({bits: 512}, (err, pi) => {
       expect(err).to.not.exist()
       expect(pi.id).to.exist()
       done()
@@ -55,7 +55,7 @@ describe('peer-info', () => {
   })
 
   it('PeerInfo.create with existing id', (done) => {
-    PeerId.create((err, id) => {
+    PeerId.create({bits: 512}, (err, id) => {
       expect(err).to.not.exist()
       PeerInfo.create(id, (err, pi) => {
         expect(err).to.not.exist()

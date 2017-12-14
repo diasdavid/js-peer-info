@@ -1,6 +1,6 @@
 'use strict'
 
-const Id = require('peer-id')
+const PeerId = require('peer-id')
 const ensureMultiaddr = require('./utils').ensureMultiaddr
 const MultiaddrSet = require('./multiaddr-set')
 const assert = require('assert')
@@ -34,12 +34,12 @@ class PeerInfo {
   }
 }
 
-PeerInfo.create = (id, callback) => {
-  if (typeof id === 'function') {
-    callback = id
-    id = null
+PeerInfo.create = (peerId, callback) => {
+  if (typeof peerId === 'function') {
+    callback = peerId
+    peerId = null
 
-    Id.create((err, id) => {
+    PeerId.create((err, id) => {
       if (err) {
         return callback(err)
       }
@@ -49,7 +49,12 @@ PeerInfo.create = (id, callback) => {
     return
   }
 
-  callback(null, new PeerInfo(id))
+  // Already a PeerId instance
+  if (typeof peerId.toJSON === 'function') {
+    callback(null, new PeerInfo(peerId))
+  } else {
+    PeerId.createFromJSON(peerId, (err, id) => callback(err, new PeerInfo(id)))
+  }
 }
 
 PeerInfo.isPeerInfo = (peerInfo) => {

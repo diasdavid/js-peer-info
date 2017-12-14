@@ -27,8 +27,8 @@
   - [`.multiaddrs.add(addr)`](#multiaddraddaddr)
   - [`.multiaddrs.addSafe(addr)`](#multiaddraddsafeaddr)
   - [`.multiaddrs.forEach(fn)`](#multiaddrforeachfn)
-  - [`.multaiddrs.size`]((#multiaddrsize)
-  - [`.multiaddrs.has()`]((#multiaddrhas)
+  - [`.multiaddrs.size`](#multiaddrsize)
+  - [`.multiaddrs.has()`](#multiaddrhas)
   - [`.multiaddrs.delete(addr)`](#multiaddrdeleteaddr)
   - [`.multiaddrs.toArray()`](#multiaddrtoarray)
   - [`.multiaddrs.replace(existing, fresh)`](#multiaddrreplaceexisting-fresh)
@@ -84,7 +84,7 @@ const PeerInfo = require('peer-info')
 
 ### `PeerInfo.create([id, ] callback)`
 
-- `id: PeerID`, optional
+- `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj) 
 - `callback: Function` with signature `function (err, peerInfo) {}`
 
 Creates a new PeerInfo instance and if no `id` is passed it
@@ -93,9 +93,9 @@ for it.
 
 ### `new PeerInfo(id)`
 
-- `id: PeerID`
+- `id: PeerId` - instance of PeerId (optional)
 
-Creates a new PeerInfo instance from an existing PeerID.
+Creates a new PeerInfo instance from an existing PeerId.
 
 ### `multiaddrs`
 

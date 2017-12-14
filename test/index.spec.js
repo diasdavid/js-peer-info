@@ -8,6 +8,7 @@ const expect = chai.expect
 const PeerId = require('peer-id')
 const Multiaddr = require('multiaddr')
 const PeerInfo = require('../src')
+const peerIdJSON = require('./peer-test.json')
 
 describe('peer-info', () => {
   let pi
@@ -22,7 +23,7 @@ describe('peer-info', () => {
     })
   })
 
-  it('create with Id', (done) => {
+  it('create with PeerId class', (done) => {
     PeerId.create({bits: 512}, (err, id) => {
       expect(err).to.not.exist()
       const pi = new PeerInfo(id)
@@ -32,6 +33,15 @@ describe('peer-info', () => {
       expect(pi2).to.exist()
       expect(pi2.id).to.exist()
       expect(pi2.id).to.eql(id)
+      done()
+    })
+  })
+
+  it('create with Id as JSON', (done) => {
+    PeerInfo.create(peerIdJSON, (err, pi) => {
+      expect(err).to.not.exist()
+      expect(pi.id).to.exist()
+      expect(pi.id.toJSON()).to.eql(peerIdJSON)
       done()
     })
   })
@@ -47,7 +57,7 @@ describe('peer-info', () => {
   })
 
   it('PeerInfo.create', (done) => {
-    PeerInfo.create({bits: 512}, (err, pi) => {
+    PeerInfo.create((err, pi) => {
       expect(err).to.not.exist()
       expect(pi.id).to.exist()
       done()

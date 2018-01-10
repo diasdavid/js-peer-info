@@ -1,0 +1,7 @@
+// @flow
+
+import type { Multiaddr } from "multiaddr"
+
+declare export var ensureMultiaddr: (
+  address: string | Buffer | Multiaddr
+) => Multiaddr

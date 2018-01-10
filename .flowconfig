@@ -1,0 +1,9 @@
+[ignore]
+.*/node_modules/documentation/*
+.*/node_modules/node_modules/radium/*
+
+[libs]
+
+[include]
+
+[options]

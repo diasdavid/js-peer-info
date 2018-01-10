@@ -1,0 +1,19 @@
+// @flow
+
+import type { Callback } from "callback.flow"
+import type { PeerId, JSONPeerId } from "peer-id"
+import type { MultiaddrSet, Address } from "./multiaddr-set"
+
+export interface PeerInfo {
+  id: PeerId;
+  multiaddrs: MultiaddrSet;
+  connect(Address): void;
+  disconnect(): void;
+  isConnected(): boolean;
+}
+
+declare export default {
+  create(Callback<Error, PeerInfo>): void,
+  create(PeerId | JSONPeerId, Callback<Error, PeerInfo>): void,
+  isPeerInfo(mixed): boolean
+}

@@ -1,0 +1,22 @@
+// @flow
+
+import type { Multiaddr } from "multiaddr"
+
+export type { Multiaddr }
+export type Address = Multiaddr | Buffer | string
+
+export interface MultiaddrSet {
+  add(Address): void;
+  addSafe(Address): void;
+  toArray(): Multiaddr[];
+  forEach(fn: (Multiaddr, index?: number) => mixed): void;
+  has(Address): boolean;
+  delete(Address): void;
+  replace(existing: Address, fresh: Address): void;
+  clear(): void;
+  distinct(): Multiaddr[];
+}
+
+declare export default {
+  (multiaddrs?: Multiaddr[]): MultiaddrSet
+}

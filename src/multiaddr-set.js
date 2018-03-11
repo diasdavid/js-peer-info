@@ -52,6 +52,10 @@ class MultiaddrSet {
     return this._multiaddrs.forEach(fn)
   }
 
+  filter (fn) {
+    return this._multiaddrs.filter(fn)
+  }
+
   has (ma) {
     ma = ensureMultiaddr(ma)
     return this._multiaddrs.some((m) => m.equals(ma))

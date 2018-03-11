@@ -260,6 +260,16 @@ describe('peer-info', () => {
     })
   })
 
+  it('multiaddrs.filter', () => {
+    const ma1 = Multiaddr('/ip4/127.0.0.1/tcp/7000')
+    const ma2 = Multiaddr('/ip4/127.0.0.1/tcp/5001')
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+    const maddrs = pi.multiaddrs.filter((ma) => (ma.equals(ma1)))
+    expect(maddrs.length).to.eq(1)
+    expect(maddrs[0].equals(ma1)).to.eq(true)
+  })
+
   it('multiaddrs.toArray', () => {
     pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
     pi.multiaddrs.toArray().forEach((ma) => {

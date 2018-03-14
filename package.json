@@ -44,8 +44,9 @@
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^3.0.2",
+    "js-mafmt": "^1.0.0",
     "lodash.uniqby": "^4.7.0",
+    "multiaddr": "^3.0.2",
     "peer-id": "~0.10.5"
   },
   "contributors": [

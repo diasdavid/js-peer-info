@@ -1,6 +1,6 @@
 {
   "name": "peer-info",
-  "version": "0.11.6",
+  "version": "0.14.0",
   "description": "IPFS Peer abstraction JavaScript implementation",
   "main": "src/index.js",
   "scripts": {
@@ -37,17 +37,17 @@
     "test"
   ],
   "devDependencies": {
-    "aegir": "^12.4.0",
+    "aegir": "^13.0.6",
     "buffer-loader": "0.0.1",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "lodash.uniqby": "^4.7.0",
+    "multiaddr": "^4.0.0",
     "mafmt": "^4.0.0",
-    "multiaddr": "^3.0.2",
-    "peer-id": "~0.10.5"
+    "lodash.uniqby": "^4.7.0",
+    "peer-id": "~0.10.7"
   },
   "contributors": [
     "Arnaud <arnaud.valensi@gmail.com>",

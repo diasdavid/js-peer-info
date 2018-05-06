@@ -37,14 +37,14 @@
     "test"
   ],
   "devDependencies": {
-    "aegir": "^13.0.6",
+    "aegir": "^13.1.0",
     "buffer-loader": "0.0.1",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^4.0.0",
+    "multiaddr": "^5.0.0",
     "mafmt": "^6.0.0",
     "lodash.uniqby": "^4.7.0",
     "peer-id": "~0.10.7"

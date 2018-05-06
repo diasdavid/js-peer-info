@@ -10,6 +10,10 @@
 ![](https://img.shields.io/badge/npm-%3E%3D3.0.0-orange.svg?style=flat-square)
 ![](https://img.shields.io/badge/Node.js-%3E%3D6.0.0-orange.svg?style=flat-square)
 
+## Lead Maintainer
+
+[Pedro Teixeira](https://github.com/pgte)
+
 ## Table of Contents
 
 - [Installation](#installation)

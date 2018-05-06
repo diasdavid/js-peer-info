@@ -2,6 +2,7 @@
   "name": "peer-info",
   "version": "0.14.1",
   "description": "IPFS Peer abstraction JavaScript implementation",
+  "leadMaintainer": "Pedro Teixeira <i@pgte.me>",
   "main": "src/index.js",
   "scripts": {
     "lint": "aegir lint",
@@ -26,13 +27,12 @@
     "node": ">=6.0.0",
     "npm": ">=3.0.0"
   },
-  "author": "David Dias <daviddias@ipfs.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/libp2p/js-peer-info/issues"
   },
   "homepage": "https://github.com/libp2p/js-peer-info",
-  "pre-commit": [
+  "pre-push": [
     "lint",
     "test"
   ],
@@ -40,8 +40,7 @@
     "aegir": "^13.1.0",
     "buffer-loader": "0.0.1",
     "chai": "^4.1.2",
-    "dirty-chai": "^2.0.1",
-    "pre-commit": "^1.2.2"
+    "dirty-chai": "^2.0.1"
   },
   "dependencies": {
     "multiaddr": "^5.0.0",

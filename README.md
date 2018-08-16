@@ -17,29 +17,28 @@
 
 ## Table of Contents
 
-- [Installation](#installation)
-  - [npm](#npm)
-  - [Node.JS, Browserify, Webpack](#nodejs-browserify-webpack)
-  - [Browser: `<script>` Tag](#browser-script-tag)
-- [Usage](#usage)
-- [API](#api)
-  - [`PeerInfo.create([id])`](#peerinfocreateid)
-  - [`new PeerInfo(id)`](#new-peerinfoid)
-  - [`.connect(ma)`](#connectma)
-  - [`.disconnect()`](#connectma)
-  - [`.isConnected()`](#connectma)
-  - [`.multiaddrs`](#multiaddrs)
-  - [`.multiaddrs.add(addr)`](#multiaddraddaddr)
-  - [`.multiaddrs.addSafe(addr)`](#multiaddraddsafeaddr)
-  - [`.multiaddrs.forEach(fn)`](#multiaddrforeachfn)
-  - [`.multiaddrs.size`](#multiaddrsize)
-  - [`.multiaddrs.has()`](#multiaddrhas)
-  - [`.multiaddrs.delete(addr)`](#multiaddrdeleteaddr)
-  - [`.multiaddrs.toArray()`](#multiaddrtoarray)
-  - [`.multiaddrs.replace(existing, fresh)`](#multiaddrreplaceexisting-fresh)
-  - [`.multiaddrs.distinct()`](#distinct)
-- [Contribute](#contribute)
-- [License](#license)
+- [js-peer-info](#js-peer-info)
+  - [Lead Maintainer](#lead-maintainer)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [npm](#npm)
+    - [Node.JS, Browserify, Webpack](#nodejs-browserify-webpack)
+    - [Browser: `<script>` Tag](#browser-script-tag)
+  - [Usage](#usage)
+  - [API](#api)
+    - [`PeerInfo.create([id])`](#peerinfocreateid)
+    - [`new PeerInfo(id)`](#new-peerinfoid)
+    - [`.id`](#id)
+    - [`protocols`](#protocols)
+    - [`.protocols.add(protocol)`](#protocolsaddprotocol)
+    - [`.protocols.delete(protocol)`](#protocolsdeleteprotocol)
+    - [`.multiaddrs`](#multiaddrs)
+    - [`.multiaddrs.add(addr)`](#multiaddrsaddaddr)
+    - [`.multiaddrs.addSafe(addr)`](#multiaddrsaddsafeaddr)
+    - [`.multiaddrs.delete(addr)`](#multiaddrsdeleteaddr)
+    - [`.multiaddrs.replace(existing, fresh)`](#multiaddrsreplaceexisting-fresh)
+  - [Contribute](#contribute)
+  - [License](#license)
 
 ## Installation
 
@@ -89,7 +88,7 @@ const PeerInfo = require('peer-info')
 
 ### `PeerInfo.create([id])`
 
-- `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj) 
+- `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj)
 
 Creates a new PeerInfo instance and if no `id` is passed it
 generates a new underlying [PeerID](https://github.com/libp2p/js-peer-id)
@@ -103,6 +102,10 @@ Returns `Promise<PeerInfo>`.
 
 Creates a new PeerInfo instance from an existing PeerId.
 
+### `.id`
+
+The [PeerId](https://github.com/libp2p/js-peer-id) of the peer this info relates to.
+
 ### `protocols`
 
 A list of protocols that `peer` supports.
@@ -115,7 +118,7 @@ Adds a protocol that `peer` can support. `protocol` is a string.
 
 Removes a protocol that `peer` no longer supports. `protocol` is a string.
 
-### `multiaddrs`
+### `.multiaddrs`
 
 A list of multiaddresses instances that `peer` can be reached at.
 

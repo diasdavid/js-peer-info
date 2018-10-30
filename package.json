@@ -33,16 +33,16 @@
   "bugs": "https://github.com/libp2p/js-peer-info/issues",
   "homepage": "https://github.com/libp2p/js-peer-info",
   "devDependencies": {
-    "aegir": "^18.2.2",
+    "aegir": "^19.0.5",
     "buffer-loader": "0.1.0",
-    "bundlesize": "~0.17.0",
+    "bundlesize": "~0.18.0",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1"
   },
   "dependencies": {
     "mafmt": "^6.0.7",
     "multiaddr": "^6.0.6",
-    "peer-id": "~0.12.2",
+    "peer-id": "~0.13.1",
     "unique-by": "^1.0.0"
   },
   "contributors": [

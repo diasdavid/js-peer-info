@@ -23,7 +23,7 @@
   - [Browser: `<script>` Tag](#browser-script-tag)
 - [Usage](#usage)
 - [API](#api)
-  - [`PeerInfo.create([id, ] callback)`](#peerinfocreateid-callback)
+  - [`PeerInfo.create([id])`](#peerinfocreateid)
   - [`new PeerInfo(id)`](#new-peerinfoid)
   - [`.connect(ma)`](#connectma)
   - [`.disconnect()`](#connectma)
@@ -87,14 +87,15 @@ peer.multiaddrs.add('/sonic/bfsk/697/1209')
 const PeerInfo = require('peer-info')
 ```
 
-### `PeerInfo.create([id, ] callback)`
+### `PeerInfo.create([id])`
 
 - `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj) 
-- `callback: Function` with signature `function (err, peerInfo) {}`
 
 Creates a new PeerInfo instance and if no `id` is passed it
 generates a new underlying [PeerID](https://github.com/libp2p/js-peer-id)
 for it.
+
+Returns `Promise<PeerInfo>`.
 
 ### `new PeerInfo(id)`
 

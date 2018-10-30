@@ -14,28 +14,20 @@ const peerIdJSON = require('./peer-test.json')
 describe('peer-info', () => {
   let pi
 
-  beforeEach((done) => {
-    Id.create({ bits: 512 }, (err, id) => {
-      if (err) {
-        return done(err)
-      }
-      pi = new Info(id)
-      done()
-    })
+  beforeEach(async () => {
+    const id = await Id.create({ bits: 512 })
+    pi = new Info(id)
   })
 
-  it('create with Id class', (done) => {
-    Id.create({ bits: 512 }, (err, id) => {
-      expect(err).to.not.exist()
-      const pi = new Info(id)
-      const pi2 = new Info(id)
-      expect(pi.id).to.exist()
-      expect(pi.id).to.eql(id)
-      expect(pi2).to.exist()
-      expect(pi2.id).to.exist()
-      expect(pi2.id).to.eql(id)
-      done()
-    })
+  it('create with Id class', async () => {
+    const id = await Id.create({ bits: 512 })
+    const pi = new Info(id)
+    const pi2 = new Info(id)
+    expect(pi.id).to.exist()
+    expect(pi.id).to.eql(id)
+    expect(pi2).to.exist()
+    expect(pi2.id).to.exist()
+    expect(pi2.id).to.eql(id)
   })
 
   it('throws when not passing an Id', () => {
@@ -48,34 +40,23 @@ describe('peer-info', () => {
     expect(Info.isPeerInfo('bananas')).to.equal(false)
   })
 
-  it('.create', function (done) {
+  it('.create', async function () {
     this.timeout(20 * 1000)
-    Info.create((err, pi) => {
-      expect(err).to.not.exist()
-      expect(pi.id).to.exist()
-      done()
-    })
+    const info = await Info.create()
+    expect(info.id).to.exist()
   })
 
-  it('create with Id as JSON', (done) => {
-    Info.create(peerIdJSON, (err, pi) => {
-      expect(err).to.not.exist()
-      expect(pi.id).to.exist()
-      expect(pi.id.toJSON()).to.eql(peerIdJSON)
-      done()
-    })
+  it('create with Id as JSON', async () => {
+    const info = await Info.create(peerIdJSON)
+    expect(info.id).to.exist()
+    expect(info.id.toJSON()).to.eql(peerIdJSON)
   })
 
-  it('.create with existing id', (done) => {
-    Id.create({ bits: 512 }, (err, id) => {
-      expect(err).to.not.exist()
-      Info.create(id, (err, pi) => {
-        expect(err).to.not.exist()
-        expect(pi.id).to.exist()
-        expect(pi.id.isEqual(id)).to.equal(true)
-        done()
-      })
-    })
+  it('.create with existing id', async () => {
+    const id = await Id.create({ bits: 512 })
+    const info = await Info.create(id)
+    expect(info.id).to.exist()
+    expect(info.id.isEqual(id)).to.equal(true)
   })
 
   it('add multiaddr', () => {

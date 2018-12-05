@@ -15,7 +15,7 @@
     "release-major": "aegir release --type major",
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage --provider coveralls",
-    "size": "bundlesize -f dist/index.min.js -s 212kB"
+    "size": "bundlesize -f dist/index.min.js -s 146kB"
   },
   "files": [
     "src",

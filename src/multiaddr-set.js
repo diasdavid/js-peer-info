@@ -1,7 +1,7 @@
 'use strict'
 
-const ensureMultiaddr = require('./utils').ensureMultiaddr
-const uniqBy = require('lodash.uniqby')
+const { ensureMultiaddr } = require('./utils')
+const uniqBy = require('unique-by')
 
 // Because JavaScript doesn't let you overload the compare in Set()..
 class MultiaddrSet {

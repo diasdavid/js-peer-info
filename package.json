@@ -14,39 +14,36 @@
     "release-minor": "aegir release --type minor",
     "release-major": "aegir release --type major",
     "coverage": "aegir coverage",
-    "coverage-publish": "aegir coverage --provider coveralls"
+    "coverage-publish": "aegir coverage --provider coveralls",
+    "size": "bundlesize -f dist/index.min.js -s 212kB"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/libp2p/js-peer-info.git"
-  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": "github:libp2p/js-peer-info",
   "keywords": [
     "IPFS"
   ],
   "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/libp2p/js-peer-info/issues"
-  },
+  "bugs": "https://github.com/libp2p/js-peer-info/issues",
   "homepage": "https://github.com/libp2p/js-peer-info",
-  "pre-push": [
-    "lint",
-    "test"
-  ],
   "devDependencies": {
-    "aegir": "^17.1.1",
+    "aegir": "ipfs/aegir#fix/babel",
     "buffer-loader": "0.1.0",
+    "bundlesize": "~0.17.0",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1"
   },
   "dependencies": {
-    "multiaddr": "^5.0.2",
     "mafmt": "^6.0.2",
-    "lodash.uniqby": "^4.7.0",
-    "peer-id": "~0.12.0"
+    "multiaddr": "multiformats/js-multiaddr#feat/bundle-size",
+    "peer-id": "libp2p/js-peer-id#feat/bundle-size",
+    "unique-by": "^1.0.0"
   },
   "contributors": [
     "Arnaud <arnaud.valensi@gmail.com>",

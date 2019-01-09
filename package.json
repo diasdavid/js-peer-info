@@ -33,7 +33,7 @@
   "bugs": "https://github.com/libp2p/js-peer-info/issues",
   "homepage": "https://github.com/libp2p/js-peer-info",
   "devDependencies": {
-    "aegir": "~18.0.3",
+    "aegir": "^18.0.3",
     "buffer-loader": "0.1.0",
     "bundlesize": "~0.17.0",
     "chai": "^4.2.0",

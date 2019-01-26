@@ -12,7 +12,14 @@ class PeerInfo {
 
     this.id = peerId
     this.multiaddrs = new MultiaddrSet()
+
+    /**
+     * Stores protocols this peers supports
+     *
+     * @type {Set<string>}
+     */
     this.protocols = new Set()
+
     this._connectedMultiaddr = undefined
   }
 

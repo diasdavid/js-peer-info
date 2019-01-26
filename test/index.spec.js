@@ -291,4 +291,23 @@ describe('peer-info', () => {
     pi.multiaddrs.clear()
     expect(pi.multiaddrs.size).to.equal(0)
   })
+
+  it('add a protocol', () => {
+    pi.protocols.add('/multistream-select/0.3.0')
+    expect(pi.protocols.size).to.equal(1)
+  })
+
+  it('add the same protocol multiple times', () => {
+    pi.protocols.add('/multistream-select/0.3.0')
+    expect(pi.protocols.size).to.equal(1)
+    pi.protocols.add('/multistream-select/0.3.0')
+    expect(pi.protocols.size).to.equal(1)
+  })
+
+  it('remove a protocol', () => {
+    pi.protocols.add('/multistream-select/0.3.0')
+    expect(pi.protocols.size).to.equal(1)
+    pi.protocols.delete('/multistream-select/0.3.0')
+    expect(pi.protocols.size).to.equal(0)
+  })
 })

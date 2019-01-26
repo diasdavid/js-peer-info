@@ -101,6 +101,18 @@ for it.
 
 Creates a new PeerInfo instance from an existing PeerId.
 
+### `protocols`
+
+A list of protocols that `peer` supports.
+
+### `.protocols.add(protocol)`
+
+Adds a protocol that `peer` can support. `protocol` is a string.
+
+## `.protocols.delete(protocol)`
+
+Removes a protocol that `peer` no longer supports. `protocol` is a string.
+
 ### `multiaddrs`
 
 A list of multiaddresses instances that `peer` can be reached at.

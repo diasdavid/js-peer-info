@@ -109,7 +109,7 @@ A list of protocols that `peer` supports.
 
 Adds a protocol that `peer` can support. `protocol` is a string.
 
-## `.protocols.delete(protocol)`
+### `.protocols.delete(protocol)`
 
 Removes a protocol that `peer` no longer supports. `protocol` is a string.
 

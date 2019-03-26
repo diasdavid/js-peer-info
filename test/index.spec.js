@@ -78,6 +78,15 @@ describe('peer-info', () => {
     })
   })
 
+  it('should be able to provide multiaddrs on create', () => {
+    const addrs = [
+      Multiaddr('/ip4/127.0.0.1/tcp/5001'),
+      Multiaddr('/ip4/127.0.0.1/tcp/5002/ws')
+    ]
+    const peerInfo = new Info(pi.id, addrs)
+    expect(peerInfo.multiaddrs.toArray()).to.eql(addrs)
+  })
+
   it('add multiaddr', () => {
     const ma = Multiaddr('/ip4/127.0.0.1/tcp/5001')
     pi.multiaddrs.add(ma)

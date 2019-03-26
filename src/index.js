@@ -7,11 +7,16 @@ const assert = require('assert')
 
 // Peer represents a peer on the IPFS network
 class PeerInfo {
-  constructor (peerId) {
+  /**
+   * @constructor
+   * @param {PeerId} peerId
+   * @param {Array<Multiaddr>} addrs
+   */
+  constructor (peerId, addrs = []) {
     assert(peerId, 'Missing peerId. Use Peer.create(cb) to create one')
 
     this.id = peerId
-    this.multiaddrs = new MultiaddrSet()
+    this.multiaddrs = new MultiaddrSet(addrs)
 
     /**
      * Stores protocols this peers supports

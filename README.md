@@ -88,18 +88,20 @@ const PeerInfo = require('peer-info')
 
 ### `PeerInfo.create([id, ] callback)`
 
-- `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj) 
+- `id` optional - can be a PeerId or a JSON object(will be parsed with https://github.com/libp2p/js-peer-id#createfromjsonobj)
 - `callback: Function` with signature `function (err, peerInfo) {}`
 
 Creates a new PeerInfo instance and if no `id` is passed it
 generates a new underlying [PeerID](https://github.com/libp2p/js-peer-id)
 for it.
 
-### `new PeerInfo(id)`
+### `new PeerInfo(id, addrs)`
 
-- `id: PeerId` - instance of PeerId (optional)
+- `id: PeerId` - instance of PeerId
+- `addrs: Array<Multiaddr>` - an array of Multiaddr's (optional)
 
-Creates a new PeerInfo instance from an existing PeerId.
+Creates a new PeerInfo instance from an existing PeerId. If the multiaddr array
+is provided, it will seed [`.multiaddrs`](#multiaddrs).
 
 ### `protocols`
 

@@ -5,8 +5,12 @@ const uniqBy = require('unique-by')
 
 // Because JavaScript doesn't let you overload the compare in Set()..
 class MultiaddrSet {
-  constructor (multiaddrs) {
-    this._multiaddrs = multiaddrs || []
+  /**
+   * @constructor
+   * @param {Array<Multiaddr>} multiaddrs
+   */
+  constructor (multiaddrs = []) {
+    this._multiaddrs = multiaddrs.map((ma) => ensureMultiaddr(ma))
     this._observedMultiaddrs = []
   }
 

@@ -99,7 +99,11 @@ class MultiaddrSet {
   // in libp2p-tcp
   distinct () {
     return uniqBy(this._multiaddrs, (ma) => {
-      return [ma.toOptions().port, ma.toOptions().transport].join()
+      const options = ma.toOptions()
+      if (options.port === undefined) {
+        return ma.toString()
+      }
+      return [options.port, options.transport].join()
     })
   }
 }

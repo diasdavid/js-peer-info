@@ -248,6 +248,17 @@ describe('peer-info', () => {
     expect(multiaddrDistinct[1].toOptions().family).to.equal('ipv6')
   })
 
+  it('get distinct multiaddr when port doesnt exist', () => {
+    const ma1 = Multiaddr('/unix/a/b/c/d/e')
+    const ma2 = Multiaddr('/p2p-circuit/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSupNKC')
+
+    pi.multiaddrs.add(ma1)
+    pi.multiaddrs.add(ma2)
+
+    const multiaddrDistinct = pi.multiaddrs.distinct()
+    expect(multiaddrDistinct.length).to.equal(2)
+  })
+
   it('multiaddrs.has', () => {
     pi.multiaddrs.add('/ip4/127.0.0.1/tcp/5001')
     expect(pi.multiaddrs.has('/ip4/127.0.0.1/tcp/5001')).to.equal(true)

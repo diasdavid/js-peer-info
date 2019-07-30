@@ -2,7 +2,7 @@
   "name": "peer-info",
   "version": "0.16.0",
   "description": "IPFS Peer abstraction JavaScript implementation",
-  "leadMaintainer": "Pedro Teixeira <i@pgte.me>",
+  "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
   "scripts": {
     "lint": "aegir lint",
@@ -33,7 +33,7 @@
   "bugs": "https://github.com/libp2p/js-peer-info/issues",
   "homepage": "https://github.com/libp2p/js-peer-info",
   "devDependencies": {
-    "aegir": "^19.0.5",
+    "aegir": "^20.0.0",
     "buffer-loader": "0.1.0",
     "bundlesize": "~0.18.0",
     "chai": "^4.2.0",
@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "mafmt": "^6.0.7",
-    "multiaddr": "^6.0.6",
-    "peer-id": "~0.13.1",
+    "multiaddr": "^6.1.0",
+    "peer-id": "~0.13.2",
     "unique-by": "^1.0.0"
   },
   "contributors": [

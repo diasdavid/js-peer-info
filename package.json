@@ -40,8 +40,8 @@
     "dirty-chai": "^2.0.1"
   },
   "dependencies": {
-    "mafmt": "^6.0.7",
-    "multiaddr": "^6.1.0",
+    "mafmt": "^6.0.9",
+    "multiaddr": "^7.1.0",
     "peer-id": "~0.13.2",
     "unique-by": "^1.0.0"
   },

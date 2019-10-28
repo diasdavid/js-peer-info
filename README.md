@@ -37,6 +37,9 @@
     - [`.multiaddrs.addSafe(addr)`](#multiaddrsaddsafeaddr)
     - [`.multiaddrs.delete(addr)`](#multiaddrsdeleteaddr)
     - [`.multiaddrs.replace(existing, fresh)`](#multiaddrsreplaceexisting-fresh)
+    - [`.connect(ma)`](#connectma)
+    - [`.disconnect()`](#disconnect)
+    - [`.isConnected()`](#isconnected)
   - [Contribute](#contribute)
   - [License](#license)
 
@@ -155,6 +158,20 @@ Removes a multiaddress instance `addr` from `peer`.
 
 Removes the array of multiaddresses `existing` from `peer`, and adds the array
 of multiaddresses `fresh`.
+
+### `.connect(ma)`
+
+Records the given multiaddr, `ma` as the active multiaddr of the peer.
+
+- `ma: Multiaddr`
+
+### `.disconnect()`
+
+Removes the existing connected Multiaddr from tracking.
+
+### `.isConnected()`
+
+Returns `true`  if a connected Multiaddr exists, otherwise returns `false`.
 
 ## Contribute
 

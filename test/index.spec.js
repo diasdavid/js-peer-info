@@ -31,6 +31,7 @@ describe('peer-info', () => {
   })
 
   it('throws when not passing an Id', () => {
+    // @ts-ignore
     expect(() => new Info()).to.throw()
   })
 
@@ -47,6 +48,7 @@ describe('peer-info', () => {
   })
 
   it('create with Id as JSON', async () => {
+    // @ts-ignore
     const info = await Info.create(peerIdJSON)
     expect(info.id).to.exist()
     expect(info.id.toJSON()).to.eql(peerIdJSON)

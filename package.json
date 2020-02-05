@@ -33,6 +33,9 @@
   "bugs": "https://github.com/libp2p/js-peer-info/issues",
   "homepage": "https://github.com/libp2p/js-peer-info",
   "devDependencies": {
+    "@types/chai": "^4.2.8",
+    "@types/dirty-chai": "^2.0.2",
+    "@types/mocha": "^7.0.1",
     "aegir": "^20.0.0",
     "buffer-loader": "0.1.0",
     "bundlesize": "~0.18.0",

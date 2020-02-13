@@ -3,12 +3,13 @@
 const PeerId = require('peer-id')
 const { ensureMultiaddr } = require('./utils')
 const MultiaddrSet = require('./multiaddr-set')
-const assert = require('assert')
 
 // Peer represents a peer on the IPFS network
 class PeerInfo {
   constructor (peerId) {
-    assert(peerId, 'Missing peerId. Use Peer.create() to create one')
+    if (!peerId) {
+      throw new Error('Missing peerId. Use Peer.create() to create one')
+    }
 
     this.id = peerId
     this.multiaddrs = new MultiaddrSet()

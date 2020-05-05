@@ -1,3 +1,6 @@
+⛔️ DEPRECATED: peer-info is not used anymore in favour of storing this data in the [PeerStore](https://github.com/libp2p/js-libp2p/tree/master/src/peer-store)
+======
+
 # js-peer-info
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://protocol.ai)
